@@ -47,7 +47,8 @@ export default {
   components: {
     dirs: [
       '~/components',
-      '~/components/layout'
+      '~/components/layout',
+      '~/components/profile'
     ]
   },
 
