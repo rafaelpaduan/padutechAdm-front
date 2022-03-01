@@ -25,7 +25,10 @@ export default {
         src: 'https://unpkg.com/@tabler/core@latest/dist/js/tabler.min.js',
         body: true
       }
-    ]
+    ],
+    bodyAttrs: {
+      class: 'layout-fluid'
+    }
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css

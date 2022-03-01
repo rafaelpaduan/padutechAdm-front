@@ -1,6 +1,5 @@
 <template>
     <div class="page">
-        <navbar />
         <sidebar />
         <div class="page-wrapper">
             <div class="container-xl">
