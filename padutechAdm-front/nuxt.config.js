@@ -1,4 +1,9 @@
 export default {
+
+  server: {
+    host: '0'
+  },
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'padutechAdm-front',
@@ -36,7 +41,12 @@ export default {
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
-  components: true,
+  components: {
+    dirs: [
+      '~/components',
+      '~/components/layout'
+    ]
+  },
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
@@ -48,10 +58,60 @@ export default {
     'bootstrap-vue/nuxt',
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/auth-next'
   ],
 
+  auth: {
+    strategies: {
+      local: false,
+      keycloak: {
+        scheme: 'oauth2',
+        endpoints: {
+          authorization: '/auth/realms/PadutechAdm/protocol/openid-connect/auth',
+          token: '/auth/realms/PadutechAdm/protocol/openid-connect/token',
+          userInfo: '/auth/realms/PadutechAdm/protocol/openid-connect/userinfo',
+          logout: '/auth/realms/PadutechAdm/protocol/openid-connect/logout?redirect_uri=' + encodeURIComponent('http://localhost:3000')
+        },
+        token: {
+          property: 'access_token',
+          type: 'Bearer',
+          name: 'Authorization',
+          maxAge: 300
+        },
+        refreshToken: {
+          property: 'refresh_token',
+          maxAge: 60 * 60 * 24 * 30
+        },
+        responseType: 'code',
+        grantType: 'authorization_code',
+        clientId: 'padutechAdm-front',
+        scope: ['openid', 'profile', 'email'],
+        codeChallengeMethod: 'S256'
+      }
+    },
+    redirect: {
+      login: '/login',
+      logout: '/',
+      home: '/'
+    }
+  },
+
+  router: {
+    middleware: ['auth']
+  },
+
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    proxyHeaders: true,
+    proxy: true
+  },
+
+  proxy: {
+    '/auth': {
+      target: 'http://localhost:8080'
+    }
+  },
+   
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
