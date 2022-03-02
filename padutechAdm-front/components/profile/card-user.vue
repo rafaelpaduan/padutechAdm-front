@@ -1,26 +1,25 @@
 <template>
     <div class="card">
         <div class="card-body">
+            <div class="dropdown float-end">
+                <span class="nav-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3"></path><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3"></path><line x1="16" y1="5" x2="19" y2="8"></line></svg>
+                </span>
+            </div>
             <div class="d-flex align-items-start">
                 <img src="/profile/profile.svg" class="avatar avatar-lg mb-3 avatar-rounded" alt="profile-image">
                 <div class="w-100 ms-3">
-                    <h4 class="my-0">Geneva McKnight</h4>
-                    <p class="text-muted">@webdesigner</p>
+                    <h4 class="my-0">{{$store.state.user.apiUser.nickName}}</h4>
+                    <p class="text-muted">@developer</p>
                 </div>
             </div>
 
             <div class="mt-3">
-                <h4 class="font-13 text-uppercase">About Me :</h4>
-                <p class="text-muted font-13 mb-3">
-                    Hi I'm Johnathn Deo,has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.
-                </p>
-                <p class="text-muted mb-2 font-13"><strong>Full Name :</strong> <span class="ms-2">Geneva D. McKnight</span></p>
-            
-                <p class="text-muted mb-2 font-13"><strong>Mobile :</strong><span class="ms-2">(123) 123 1234</span></p>
-            
-                <p class="text-muted mb-2 font-13"><strong>Email :</strong> <span class="ms-2">user@email.domain</span></p>
-            
-                <p class="text-muted mb-1 font-13"><strong>Location :</strong> <span class="ms-2">USA</span></p>
+                <p class="text-muted mb-2 font-13"><strong>Nome :</strong><span class="ms-2">{{$store.state.user.apiUser.name}}</span></p>
+                <p class="text-muted mb-2 font-13"><strong>Primeiro Nome :</strong> <span class="ms-2">{{$store.state.user.apiUser.firstName}}</span></p>
+                <p class="text-muted mb-2 font-13"><strong>Sobrenome :</strong> <span class="ms-2">{{$store.state.user.apiUser.lastName}}</span></p>
+                <p class="text-muted mb-2 font-13"><strong>Apelido :</strong> <span class="ms-2">{{$store.state.user.apiUser.nickName}}</span></p>
+                <p class="text-muted mb-2 font-13"><strong>Email :</strong> <span class="ms-2">{{$store.state.user.apiUser.email}}</span></p>
             </div>                                    
 
             <ul class="social-list list-inline mt-3 mb-0">

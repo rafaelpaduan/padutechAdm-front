@@ -48,7 +48,8 @@ export default {
     dirs: [
       '~/components',
       '~/components/layout',
-      '~/components/profile'
+      '~/components/profile',
+      '~/components/general'
     ]
   },
 
@@ -114,6 +115,12 @@ export default {
   proxy: {
     '/auth': {
       target: 'http://localhost:8080'
+    },
+    '/api/users': {
+      target: 'http://localhost:8000'
+    },
+    '/api/tickets': {
+      target: 'http://localhost:8001'
     }
   },
    
