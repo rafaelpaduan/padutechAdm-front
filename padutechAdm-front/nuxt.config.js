@@ -49,8 +49,14 @@ export default {
       '~/components',
       '~/components/layout',
       '~/components/profile',
-      '~/components/general'
+      '~/components/general',
+      '~/components/system'
     ]
+  },
+
+  toast: {
+    position: 'top-right',
+    duration: 3000
   },
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
@@ -63,7 +69,8 @@ export default {
     'bootstrap-vue/nuxt',
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    '@nuxtjs/auth-next'
+    '@nuxtjs/auth-next',
+    '@nuxtjs/toast'
   ],
 
   auth: {
@@ -113,6 +120,17 @@ export default {
   },
 
   proxy: {
+
+    '/api/users/status': {
+      target: 'http://localhost:8000',
+      pathRewrite: {'^/api/users/status': '/api/status'}
+    },
+    '/api/tickets/status': {
+      target: 'http://localhost:8001',
+      pathRewrite: {'^/api/tickets/status': '/api/status'}
+    },
+
+
     '/auth': {
       target: 'http://localhost:8080'
     },
