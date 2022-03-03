@@ -27,8 +27,6 @@ export default {
                 const resources = await this.$axios.get('/api/users/resources')
                 this.setResources(resources.data)
 
-                console.log("nao deveria")
-
                 setTimeout(() => {
                     this.ready = true
                 }, 1000)
