@@ -3,24 +3,59 @@
         <div class="card-body">
             <div class="dropdown float-end">
                 <span class="nav-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3"></path><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3"></path><line x1="16" y1="5" x2="19" y2="8"></line></svg>
+                    <!-- <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M9 7h-3a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-3"></path><path d="M9 15h3l8.5 -8.5a1.5 1.5 0 0 0 -3 -3l-8.5 8.5v3"></path><line x1="16" y1="5" x2="19" y2="8"></line></svg> -->
+                    <a href="#" @click="patchUser()" class="btn btn-outline-success w-100">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-device-floppy" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M6 4h10l4 4v10a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2"></path><circle cx="12" cy="14" r="2"></circle><polyline points="14 4 14 8 8 8 8 4"></polyline></svg>
+                        Salvar
+                    </a>
                 </span>
             </div>
-            <div class="d-flex align-items-start">
+            <div class="d-flex align-items-center">
                 <img src="/profile/profile.svg" class="avatar avatar-lg mb-3 avatar-rounded" alt="profile-image">
                 <div class="w-100 ms-3">
                     <h4 class="my-0">{{$store.state.user.apiUser.nickName}}</h4>
-                    <p class="text-muted">@developer</p>
+                    <p class="text-muted">@{{ user.username }}</p>
                 </div>
             </div>
 
-            <div class="mt-3">
-                <p class="text-muted mb-2 font-13"><strong>Nome :</strong><span class="ms-2">{{$store.state.user.apiUser.name}}</span></p>
-                <p class="text-muted mb-2 font-13"><strong>Primeiro Nome :</strong> <span class="ms-2">{{$store.state.user.apiUser.firstName}}</span></p>
-                <p class="text-muted mb-2 font-13"><strong>Sobrenome :</strong> <span class="ms-2">{{$store.state.user.apiUser.lastName}}</span></p>
-                <p class="text-muted mb-2 font-13"><strong>Apelido :</strong> <span class="ms-2">{{$store.state.user.apiUser.nickName}}</span></p>
-                <p class="text-muted mb-2 font-13"><strong>Email :</strong> <span class="ms-2">{{$store.state.user.apiUser.email}}</span></p>
-            </div>                                    
+            <div class="row">
+                <div class="col-8">
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="floating-input" :value="user.firstName + ' ' + user.lastName" disabled autocomplete="off">
+                        <label for="floating-input">Nome</label>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="floating-input" v-model="user.nickName" autocomplete="off">
+                        <label for="floating-input">Apelido</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="floating-input" v-model="user.firstName" autocomplete="off">
+                        <label for="floating-input">Primeiro Nome</label>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="floating-input" v-model="user.lastName" autocomplete="off">
+                        <label for="floating-input">Ultimo Nome</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="floating-input" v-model="user.email" autocomplete="off">
+                        <label for="floating-input">e-Mail</label>
+                    </div>
+                </div>
+            </div>      
+
+            <pre>{{ $user }}</pre>                      
 
             <ul class="social-list list-inline mt-3 mb-0">
                 <li class="list-inline-item">
@@ -43,7 +78,54 @@
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"></path></svg>
                     </a>
                 </li>
+                <div class="float-end">
+                    <div class="">
+                        
+                    </div>
+                </div>
             </ul>   
         </div>                                 
     </div>
 </template>
+
+<script>
+export default {
+
+    data() {
+        return {
+            user: null,
+            update: false
+        }
+    },
+
+    updated() {
+        this.update = true
+    },
+
+    beforeMount() {
+
+        this.user = this.$user
+    },
+
+    methods: {
+        async patchUser(){
+
+            try {
+                const response = await this.$axios.patch('/api/users/' + this.user.id, this.user)
+
+                if(response.status === 200){
+                    this.$toast.success('Usuário ' + this.user.username + ' Atualizado!')
+                }
+            } catch (error) {
+                
+            }
+        }
+    },
+
+    computed: {
+        $user(){
+            return {...this.$store.getters['user/get']}
+        }
+    }
+}
+</script>
