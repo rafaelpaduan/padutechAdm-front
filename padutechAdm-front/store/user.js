@@ -12,3 +12,9 @@ export const mutations = {
         state.apiResources = apiResources
     }
 }
+
+export const getters = {
+    get(state){
+        return state.apiUser
+    }
+}
