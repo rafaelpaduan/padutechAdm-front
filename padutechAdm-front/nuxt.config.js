@@ -50,7 +50,8 @@ export default {
       '~/components/layout',
       '~/components/profile',
       '~/components/general',
-      '~/components/system'
+      '~/components/system',
+      '~/components/tickets'
     ]
   },
 

@@ -93,13 +93,8 @@ export default {
 
     data() {
         return {
-            user: null,
-            update: false
+            user: null
         }
-    },
-
-    updated() {
-        this.update = true
     },
 
     beforeMount() {
