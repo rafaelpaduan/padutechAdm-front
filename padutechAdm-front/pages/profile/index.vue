@@ -28,12 +28,12 @@ export default {
         // console.log(this.$store.state.user.apiUser)
 
         try{
-            const user = await this.$axios.get('/api/users/' + this.$auth.user.userId)
+            const user = await this.$axios.get('/api/users/profile')
             this.setUser(user.data)
 
             setTimeout(() => {
                 this.ready = true
-            }, 1000)
+            }, 200)
 
         } catch(error){
             this.error = true

@@ -28,7 +28,7 @@ export default {
 
             setTimeout(() => {
                 this.ready = true
-            }, 1000)
+            }, 200)
 
         } catch(error){
             this.error = true
