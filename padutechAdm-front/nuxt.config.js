@@ -51,7 +51,8 @@ export default {
       '~/components/profile',
       '~/components/general',
       '~/components/system',
-      '~/components/tickets'
+      '~/components/tickets',
+      '~/components/users'
     ]
   },
 
