@@ -4,7 +4,7 @@ export const state = () => ({
 })
 
 export const mutations = {
-    set(state, apiUser){
+    setApiUser(state, apiUser){
         state.apiUser = apiUser
     },
 

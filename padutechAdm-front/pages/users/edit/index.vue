@@ -1,8 +1,12 @@
 <template>
     <div class="container-xl">
         <div class="row" v-if="!error && ready">
-            <p>edit user {{ this.$route.params.id }}</p>
-            <pre>{{ user }}</pre>
+            <div class="col-6">
+                <card-user :editUser="user" />
+            </div>
+            <div class="col-6">
+                <card-activity />
+            </div>
         </div>
         <error v-if="error" />
         <ready v-if="!ready" />

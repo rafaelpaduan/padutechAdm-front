@@ -1,10 +1,10 @@
 <template>
-    <span>
+    <span v-if="ready">
         <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
             <span class="avatar avatar-sm" style="background-image: url(/profile/profile.svg)"></span>
-            <div class="d-none d-xl-block ps-2">
-                <div>{{ $auth.user.name }}</div>
-                <div class="mt-1 small text-muted">@{{ $auth.user.preferred_username }}</div>
+            <div class="d-xl-block ps-2">
+                <div>{{ $user.nickName }}</div>
+                <div class="mt-1 small text-muted">@{{ $user.username }}</div>
             </div>
         </a>
         <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
@@ -34,9 +34,26 @@
 
 <script>
 export default {
+    
+    data() {
+        return {
+            ready: false
+        }
+    },
+
+    mounted() {
+        this.ready = true
+    },
+    
     methods: {
         async logout(){
             await this.$auth.logout()
+        }
+    },
+
+    computed: {
+        $user(){
+            return {...this.$store.getters['user/get']}
         }
     }
 }

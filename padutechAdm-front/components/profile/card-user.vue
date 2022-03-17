@@ -13,7 +13,7 @@
             <div class="d-flex align-items-center">
                 <img src="/profile/profile.svg" class="avatar avatar-lg mb-3 avatar-rounded" alt="profile-image">
                 <div class="w-100 ms-3">
-                    <h4 class="my-0">{{$store.state.user.apiUser.nickName}}</h4>
+                    <h4 class="my-0">{{ user.nickName }}</h4>
                     <p class="text-muted">@{{ user.username }}</p>
                 </div>
             </div>
@@ -55,7 +55,7 @@
                 </div>
             </div>      
 
-            <pre>{{ $user }}</pre>                      
+            <pre>{{ user }}</pre>                      
 
             <ul class="social-list list-inline mt-3 mb-0">
                 <li class="list-inline-item">
@@ -97,9 +97,10 @@ export default {
         }
     },
 
-    beforeMount() {
+    props: ['editUser'],
 
-        this.user = this.$user
+    beforeMount() {
+        this.user = this.editUser
     },
 
     methods: {
@@ -110,16 +111,15 @@ export default {
 
                 if(response.status === 200){
                     this.$toast.success('Usuário ' + this.user.username + ' Atualizado!')
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 4000)
+                } else {
+                    this.$toast.warning('Falha ao atualizar o usuário ' + this.user.username + '!')
                 }
             } catch (error) {
-                
+                this.$toast.error(error)
             }
-        }
-    },
-
-    computed: {
-        $user(){
-            return {...this.$store.getters['user/get']}
         }
     }
 }

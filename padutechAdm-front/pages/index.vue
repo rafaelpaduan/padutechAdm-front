@@ -19,37 +19,14 @@ export default {
             ready: false
         }
     },
-
-    async mounted(){
-
-        if(!this.$store.state.user.apiResources){
-            try{
-                const resources = await this.$axios.get('/api/users/resources')
-                this.setResources(resources.data)
-
-                setTimeout(() => {
-                    this.ready = true
-                }, 200)
-
-            } catch(error){
-                this.error = true
-                this.ready = true
-                
-                console.log(error)
-            }
-        }
-
+    
+    mounted() {
         this.ready = true
-    }, 
+    },
 
     methods: {
         async sair(){
             await this.$auth.logout()
-        },
-
-        async setResources (resources) {
-
-            await this.$store.commit('user/setResources', resources);
         }
     }
 }

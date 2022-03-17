@@ -2,7 +2,7 @@
     <div class="container-xl">
         <div class="row" v-if="!error && ready">
             <div class="col-6">
-                <card-user />
+                <card-user :editUser="$user" />
             </div>
             <div class="col-6">
                 <card-activity />
@@ -28,12 +28,7 @@ export default {
         // console.log(this.$store.state.user.apiUser)
 
         try{
-            const user = await this.$axios.get('/api/users/profile')
-            this.setUser(user.data)
-
-            setTimeout(() => {
-                this.ready = true
-            }, 200)
+            this.ready = true
 
         } catch(error){
             this.error = true
@@ -43,10 +38,9 @@ export default {
         }
     },
 
-    methods: {
-        async setUser (user) {
-
-            await this.$store.commit('user/set', user);
+    computed: {
+        $user(){
+            return {...this.$store.getters['user/get']}
         }
     }
 }
