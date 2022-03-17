@@ -1,6 +1,7 @@
 <template>
     <div class="container-xl">
-        <div class="row" v-if="!error && ready">
+        <div class="row row-cards" v-if="!error && ready">
+            <page-utils-bar />
             <users-table />
         </div>
         <error v-if="error" />
