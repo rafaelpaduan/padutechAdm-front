@@ -12,23 +12,25 @@
         </thead> -->
         <tbody>
         <tr v-for="ticket in tickets" :key="ticket.id">
-            <td data-label="Name">
+            <td>
                 <div class="d-flex py-1 align-items-center">
-                    <div class="col-2">
-                        <div class="row">#{{ ticket.id }}</div>
-                        <div class="row">{{ ticket.status }}</div>
+                    <div class="col-3">
+                        <div class="row">
+                            <div class="col-4"><span class="text-muted">#{{ ticket.id }}</span></div>
+                            <div class="col-8"><span class="badge bg-green-lt">{{ ticket.status }}</span></div>
+                        </div>
                     </div>
-                    <div class="col">
+                    <div class="col-7">
                         <div class="flex-fill">
-                            <div class="font-weight-medium">Thatcher Keel</div>
-                            <div class="text-muted"><a href="#" class="text-reset">tkeelf@blogger.com</a></div>
+                            <div class="font-weight-medium">{{ ticket.title }}</div>
+                            <div class="text-muted"><a href="#" class="text-reset">{{ ticket.type }}</a></div>
                         </div>
                     </div>
                 </div>
             </td>
             <td data-label="Title">
-            <div>VP Sales</div>
-            <div class="text-muted">Business Development</div>
+                <div>VP Sales</div>
+                <div class="text-muted">Business Development</div>
             </td>
             <td class="text-muted" data-label="Role">
             User
@@ -57,9 +59,6 @@
         </tbody>
     </table>
     </div>
-    <pre>
-        {{tickets}}
-    </pre>
 </div>
 </template>
 
