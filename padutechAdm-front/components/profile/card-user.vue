@@ -166,7 +166,12 @@ export default {
             console.log("create")
 
             await this.$axios.post('/api/users/', this.user).then((response) => {
-                console.log(response)
+                if(response.status === 200){
+                    this.$toast.success('Usuário ' + this.user.username + ' Criado!')
+                    this.$router.push('/users')
+                } else {
+                    this.$toast.warning('Falha ao criar o usuário ' + this.user.username + '!')
+                }
             }).catch((error) => {
 
                 if(error.response){
@@ -174,12 +179,6 @@ export default {
                     this.$toast.error(error.response.data.message)
                 }
             })
-            
-            // if(response.status === 200){
-            //     this.$toast.success('Usuário ' + this.user.username + ' Criado!')
-            // } else {
-            //     this.$toast.warning('Falha ao criar o usuário ' + this.user.username + '!')
-            // }
         }
     }
 }
