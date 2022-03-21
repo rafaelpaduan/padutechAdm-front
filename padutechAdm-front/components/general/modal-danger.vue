@@ -7,18 +7,24 @@
           <div class="modal-body text-center py-4">
             <!-- Download SVG icon from http://tabler-icons.io/i/alert-triangle -->
             <svg xmlns="http://www.w3.org/2000/svg" class="icon mb-2 text-danger icon-lg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 9v2m0 4v.01"></path><path d="M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75"></path></svg>
-            <h3>Are you sure?</h3>
-            <div class="text-muted">Do you really want to remove 84 files? What you've done cannot be undone.</div>
+            <h3>Você tem certeza?</h3>
+            <div class="text-muted">Essa ação deletará o usuário <b>{{ user.nickName }}</b>.</div>
+            <div class="text-muted">Você também pode inativar esse usuário.</div>
           </div>
           <div class="modal-footer">
             <div class="w-100">
               <div class="row">
                 <div class="col"><a href="#" class="btn w-100" data-bs-dismiss="modal">
-                    Cancel
+                    Cancelar
                   </a></div>
-                <div class="col"><a href="#" class="btn btn-danger w-100" data-bs-dismiss="modal">
-                    Delete 84 items
-                  </a></div>
+                <div class="col"><a href="#" class="btn btn-primary w-100 disabled" data-bs-dismiss="modal">
+                    Inativar
+                  </a>
+                </div>
+                <div class="col"><a href="#" @click="apiDelete()" class="btn btn-danger w-100" data-bs-dismiss="modal">
+                    Deletar
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -29,6 +35,27 @@
 
 <script>
 export default {
-  props: ['modalId']
-}
+  props: ["modalId", "user"],
+
+  methods: {
+    apiDelete() {
+    	this.$axios.delete("/api/users/" + this.user.id).then((response) => {
+			if(response.status === 200){
+				this.$toast.success('Usuário ' + this.user.username + ' Deletado!')
+				this.$router.push('/users')
+				setTimeout(() => {
+                            window.location.reload();
+                        }, 2000)
+			} else {
+				this.$toast.warning('Falha ao deletar o usuário ' + this.user.username + '!')
+			}
+		}).catch((error) => {
+          if (error.response) {
+            console.log(error.response);
+            this.$toast.error(error.response.data.message);
+          }
+        });
+    },
+  },
+};
 </script>
