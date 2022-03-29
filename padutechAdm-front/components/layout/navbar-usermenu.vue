@@ -33,6 +33,9 @@
 </template>
 
 <script>
+
+import qs from 'qs';
+
 export default {
     
     data() {
@@ -47,7 +50,18 @@ export default {
     
     methods: {
         async logout(){
-            await this.$auth.logout()
+
+            const data = qs.stringify({
+				refresh_token: 'merda',
+                client_id: 'padutechAdm-front'
+			});
+
+            console.log(this.$auth.strategy.token.get())
+            console.log(this.$auth.strategy)
+
+            await this.$auth.logout({
+                data: data
+            })
         }
     },
 
