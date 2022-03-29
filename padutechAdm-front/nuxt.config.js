@@ -77,36 +77,40 @@ export default {
 
   auth: {
     strategies: {
-      local: false,
-      keycloak: {
-        scheme: 'oauth2',
-        endpoints: {
-          authorization: '/auth/realms/PadutechAdm/protocol/openid-connect/auth',
-          token: '/auth/realms/PadutechAdm/protocol/openid-connect/token',
-          userInfo: '/auth/realms/PadutechAdm/protocol/openid-connect/userinfo',
-          logout: '/auth/realms/PadutechAdm/protocol/openid-connect/logout?redirect_uri=' + encodeURIComponent('http://localhost:3000')
-        },
+      local: {
         token: {
           property: 'access_token',
-          type: 'Bearer',
-          name: 'Authorization',
-          maxAge: 300
+          global: true,
+          required: true,
+          type: 'Bearer'
         },
         refreshToken: {
           property: 'refresh_token',
+          data: 'refresh_token',
           maxAge: 60 * 60 * 24 * 30
         },
-        responseType: 'code',
-        grantType: 'authorization_code',
-        clientId: 'padutechAdm-front',
-        scope: ['openid', 'profile', 'email'],
-        codeChallengeMethod: 'S256'
+        user: {
+          property: false,
+          autoFetch: true
+        },
+        endpoints: {
+          login: {
+            url: '/auth/realms/PadutechAdm/protocol/openid-connect/token',
+            method: 'post',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            }
+          },
+          logout: {
+            url: '/auth/realms/PadutechAdm/protocol/openid-connect/logout?redirect_uri=' + encodeURIComponent('http://localhost:3000'),
+            method: 'post',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            }
+          },
+          user: { url: '/auth/realms/PadutechAdm/protocol/openid-connect/userinfo', method: 'get' }
+        }
       }
-    },
-    redirect: {
-      login: '/login',
-      logout: '/',
-      home: '/'
     }
   },
 
@@ -134,7 +138,8 @@ export default {
 
 
     '/auth': {
-      target: 'http://localhost:8080'
+      target: 'https://oauth.padutech.ml',
+      secure: false
     },
     '/api/users': {
       target: 'http://localhost:8000'
