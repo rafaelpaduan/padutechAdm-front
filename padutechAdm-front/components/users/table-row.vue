@@ -48,10 +48,6 @@
 export default {
     props: ['user'],
 
-    mounted() {
-        // console.log(this.user)
-    },
-
     methods: {
         deleteUser(){
             alert()
