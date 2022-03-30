@@ -42,7 +42,7 @@ export default {
             this.ready = true
 
         } catch(error){
-            this.error = true
+            // this.error = true
             this.ready = true
             
             console.log(error)

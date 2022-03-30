@@ -47,7 +47,9 @@ export default {
     
     methods: {
         async logout(){
+            this.ready = false
             await this.$auth.logout()
+            window.location.reload()
         }
     },
 

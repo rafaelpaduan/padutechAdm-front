@@ -21,13 +21,13 @@
             <div class="row">
                 <div class="col-8">
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="floating-input" :value="(user.firstName || '') + ' ' + (user.lastName || '')" disabled autocomplete="off">
+                        <input type="email" class="form-control" :value="(user.firstName || '') + ' ' + (user.lastName || '')" disabled autocomplete="off">
                         <label for="floating-input">Nome</label>
                     </div>
                 </div>
                 <div class="col-4">
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="floating-input" v-model="user.nickName" autocomplete="off">
+                        <input type="email" class="form-control" v-model="user.nickName" autocomplete="off">
                         <label for="floating-input">Apelido</label>
                     </div>
                 </div>
@@ -35,13 +35,13 @@
             <div class="row">
                 <div class="col-6">
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="floating-input" v-model="user.firstName" autocomplete="off">
+                        <input type="email" class="form-control" v-model="user.firstName" autocomplete="off">
                         <label for="floating-input">Primeiro Nome</label>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="floating-input" v-model="user.lastName" autocomplete="off">
+                        <input type="email" class="form-control" v-model="user.lastName" autocomplete="off">
                         <label for="floating-input">Ultimo Nome</label>
                     </div>
                 </div>
@@ -49,13 +49,13 @@
             <div class="row">
                 <div class="col-6" v-if="!editUser">
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="floating-input" v-model="user.username" autocomplete="off">
+                        <input type="email" class="form-control" v-model="user.username" autocomplete="off">
                         <label for="floating-input">Usuário</label>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="floating-input" v-model="user.email" autocomplete="off">
+                        <input type="email" class="form-control" v-model="user.email" autocomplete="off">
                         <label for="floating-input">e-Mail</label>
                     </div>
                 </div>
@@ -74,13 +74,13 @@
             <div class="row" >
                 <div class="col-6">
                     <div class="form-floating mb-3">
-                        <input type="password" class="form-control" id="floating-password" v-model="user.password" autocomplete="off">
+                        <input type="password" class="form-control" v-model="user.password" autocomplete="off">
                         <label for="floating-input">Senha</label>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-floating mb-3">
-                        <input type="password" class="form-control" id="floating-password" v-model="user.password_confirmation" autocomplete="off">
+                        <input type="password" class="form-control" v-model="user.password_confirmation" autocomplete="off">
                         <label for="floating-input">Confirme a Senha</label>
                     </div>
                 </div>    
@@ -140,18 +140,16 @@ export default {
     methods: {
         async patchUser(){
 
-            console.log("patch")
-
             try {
                 const response = await this.$axios.patch('/api/users/' + this.user.id, this.user)
 
                 if(response.status === 200){
                     this.$toast.success('Usuário ' + this.user.username + ' Atualizado!')
 
-                    if(this.$auth.userId == this.user.id){
+                    if(this.$auth.user.userId == this.user.id){
                         setTimeout(() => {
                             window.location.reload();
-                        }, 4000)
+                        }, 2000)
                     }
                 } else {
                     this.$toast.warning('Falha ao atualizar o usuário ' + this.user.username + '!')
@@ -162,8 +160,6 @@ export default {
         }, 
 
         async createUser(){
-
-            console.log("create")
 
             await this.$axios.post('/api/users/', this.user).then((response) => {
                 if(response.status === 200){
