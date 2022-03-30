@@ -84,11 +84,6 @@ export default {
           required: true,
           type: 'Bearer'
         },
-        refreshToken: {
-          property: 'refresh_token',
-          data: 'refresh_token',
-          maxAge: 60 * 60 * 24 * 30
-        },
         user: {
           property: false,
           autoFetch: true
@@ -101,16 +96,17 @@ export default {
               'Content-Type': 'application/x-www-form-urlencoded'
             }
           },
-          logout: {
-            url: '/auth/realms/PadutechAdm/protocol/openid-connect/logout?redirect_uri=' + encodeURIComponent('http://localhost:3000'),
-            method: 'post',
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded'
-            }
+          user: {
+            url: '/auth/realms/PadutechAdm/protocol/openid-connect/userinfo',
+            method: 'get'
           },
-          user: { url: '/auth/realms/PadutechAdm/protocol/openid-connect/userinfo', method: 'get' }
+          logout: false,
         }
       }
+    },
+    redirect: {
+      home: '/',
+      logout: '/login'
     }
   },
 
