@@ -138,8 +138,8 @@ export default {
       secure: false
     },
     '/api/users': {
-      target: 'https://account.padutech.ml',
-      secure: false
+      target: 'http://account.padutech.ml',
+      // secure: false
     },
     '/api/tickets': {
       target: 'http://localhost:8001'
