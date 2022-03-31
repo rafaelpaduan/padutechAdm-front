@@ -138,7 +138,7 @@ export default {
       secure: false
     },
     '/api/users': {
-      target: 'https://account.padutech.ml',
+      target: 'http://172.30.0.249:82',
       secure: false
     },
     '/api/tickets': {
