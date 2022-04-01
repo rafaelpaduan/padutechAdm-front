@@ -11,7 +11,7 @@
             </tr>
             </thead>
             <tbody>
-                <table-row v-for="user in users" :key="user.id" :user="user" />
+                <users-table-row v-for="user in users" :key="user.id" :user="user" />
             </tbody>
         </table>
     </div>
