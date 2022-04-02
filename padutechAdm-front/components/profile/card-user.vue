@@ -162,7 +162,7 @@ export default {
         async createUser(){
 
             await this.$axios.post('/api/users', this.user).then((response) => {
-                if(response.status === 200){
+                if(response.status > 200){
                     this.$toast.success('Usuário ' + this.user.username + ' Criado!')
                     this.$router.push('/users')
                 } else {
