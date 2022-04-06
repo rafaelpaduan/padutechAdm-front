@@ -11,7 +11,7 @@
                     <div
                     v-if="['text', 'password'].indexOf(field.type) > -1"
                     :class="'form-floating mb-3 ' + (field.break ? 'col-' + field.size : '')">
-                        <input :id="field.name" :type="field.type" class="form-control" v-model="object[field.name]">
+                        <input :id="field.name" :type="field.type" :disabled="field.disabled" class="form-control" v-model="object[field.name]">
                         <label :for="field.name">{{ field.description }}</label>
                     </div>
 
