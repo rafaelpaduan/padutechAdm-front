@@ -26,7 +26,8 @@ const clientFields = [
         type: "text",
         placeholder: "",
         break: false,
-        required: true
+        required: true,
+        disabled: true
     },
 
     {
@@ -36,24 +37,25 @@ const clientFields = [
         type: "text",
         placeholder: "",
         break: false,
-        required: true
+        required: true,
+        disabled: true
     },
 
-    {
-        name: "type",
-        description: "Tipo",
-        size: 4,
-        type: "select",
-        placeholder: "",
-        break: false,
-        required: true,
-        options: [
-            {
-                value: "Cliente",
-                text: "Cliente"
-            }
-        ]
-    }
+    // {
+    //     name: "type",
+    //     description: "Tipo",
+    //     size: 4,
+    //     type: "select",
+    //     placeholder: "",
+    //     break: false,
+    //     required: true,
+    //     options: [
+    //         {
+    //             value: "Cliente",
+    //             text: "Cliente"
+    //         }
+    //     ]
+    // }
 ]
 
 export { clientFields }
