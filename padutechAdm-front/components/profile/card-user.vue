@@ -13,7 +13,7 @@
             <div class="d-flex align-items-center">
                 <img src="/profile/profile.svg" class="avatar avatar-lg mb-3 avatar-rounded" alt="profile-image">
                 <div class="w-100 ms-3">
-                    <h4 class="my-0">{{ user.nickName || '' }}</h4>
+                    <h4 class="my-0">{{ user.nick_name || '' }}</h4>
                     <p class="text-muted">@{{ user.username || '' }}</p>
                 </div>
             </div>
@@ -21,13 +21,13 @@
             <div class="row">
                 <div class="col-8">
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control" :value="(user.firstName || '') + ' ' + (user.lastName || '')" disabled autocomplete="off">
+                        <input type="email" class="form-control" :value="(user.first_name || '') + ' ' + (user.last_name || '')" disabled autocomplete="off">
                         <label for="floating-input">Nome</label>
                     </div>
                 </div>
                 <div class="col-4">
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control" v-model="user.nickName" autocomplete="off">
+                        <input type="email" class="form-control" v-model="user.nick_name" autocomplete="off">
                         <label for="floating-input">Apelido</label>
                     </div>
                 </div>
@@ -35,13 +35,13 @@
             <div class="row">
                 <div class="col-6">
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control" v-model="user.firstName" autocomplete="off">
+                        <input type="email" class="form-control" v-model="user.first_name" autocomplete="off">
                         <label for="floating-input">Primeiro Nome</label>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control" v-model="user.lastName" autocomplete="off">
+                        <input type="email" class="form-control" v-model="user.last_name" autocomplete="off">
                         <label for="floating-input">Ultimo Nome</label>
                     </div>
                 </div>

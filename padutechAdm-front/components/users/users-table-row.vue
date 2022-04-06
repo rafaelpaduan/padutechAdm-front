@@ -5,7 +5,7 @@
         <!-- <span class="avatar me-2" style="background-image: url(./static/avatars/010m.jpg)"></span> -->
         <span class="avatar me-2">US</span>
         <div class="flex-fill">
-        <div class="font-weight-medium">{{ user.nickName }}</div>
+        <div class="font-weight-medium">{{ user.nick_name }}</div>
         <div class="text-muted"><a href="#" class="text-reset">{{ user.email }}</a></div>
         </div>
     </div>
