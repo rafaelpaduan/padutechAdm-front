@@ -9,7 +9,7 @@
                     </NuxtLink>
                 </template>
             </page-utils-bar>
-            <users-table />
+            <users-table :users="users" />
         </div>
         <error v-if="error" />
         <ready v-if="!ready" />
@@ -22,17 +22,16 @@ export default {
     data() {
         return {
             error: false,
-            ready: false
+            ready: false,
+            users: []
         }
     },
 
     async mounted() {
 
-        // console.log(this.$store.state.user.apiUser)
-
         try{
             const users = await this.$axios.get('/api/users')
-            this.setUsers(users.data)
+            this.users = users.data
 
             setTimeout(() => {
                 this.ready = true
@@ -43,13 +42,6 @@ export default {
             this.ready = true
             
             console.log(error)
-        }
-    },
-
-    methods: {
-        async setUsers (users) {
-
-            await this.$store.commit('users/setUsers', users);
         }
     }
 }

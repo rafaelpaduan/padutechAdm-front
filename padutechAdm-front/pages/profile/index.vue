@@ -25,8 +25,6 @@ export default {
 
     async mounted() {
 
-        // console.log(this.$store.state.user.apiUser)
-
         try{
             this.ready = true
 

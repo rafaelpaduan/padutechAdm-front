@@ -20,8 +20,6 @@ export default {
 
     async mounted() {
 
-        // console.log(this.$store.state.user.apiUser)
-
         try{
             const tickets = await this.$axios.get('/api/tickets')
             this.setTickets(tickets.data)

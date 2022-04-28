@@ -7,7 +7,7 @@
                 </div>
                 <p class="empty-title">Ocorreu um erro</p>
                 <p class="empty-subtitle text-muted">Estamos reportando o incidente ao administrador do sistema.</p>
-                <p class="empty-subtitle text-muted">Se o erro persistir, entre em contato com o suporte!</p>
+                <p class="empty-subtitle text-muted"><b>Atualize a sua página</b> e se o erro persistir, entre em contato com o suporte!</p>
             </div>
         </div>
     </div>

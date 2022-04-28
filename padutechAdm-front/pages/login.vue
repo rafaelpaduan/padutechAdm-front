@@ -70,10 +70,8 @@ export default {
 
 			await this.$auth.loginWith("local", {
 				data: data
-			}).then((response) => {
-
-			}).catch((error) => {
-				console.error(error.message)
+			}).then((response) => {}).catch((error) => {
+				this.$toast.error(error.response.data.error_description)
 			})
 		},
 	}
