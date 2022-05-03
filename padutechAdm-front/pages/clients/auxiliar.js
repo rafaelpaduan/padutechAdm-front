@@ -27,7 +27,7 @@ const clientFields = [
         placeholder: "",
         break: false,
         required: true,
-        disabled: true
+        disabled: false
     },
 
     {
