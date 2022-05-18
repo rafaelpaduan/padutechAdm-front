@@ -36,7 +36,8 @@ export default {
     '@tabler/core/dist/css/tabler.min.css',
     '@tabler/core/dist/css/tabler-flags.min.css',
     '@tabler/core/dist/css/tabler-payments.min.css',
-    '@tabler/core/dist/css/tabler-vendors.min.css'
+    '@tabler/core/dist/css/tabler-vendors.min.css',
+    'assets/css/treeflex.css'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -52,7 +53,9 @@ export default {
       '~/components/general',
       '~/components/system',
       '~/components/tickets',
-      '~/components/users'
+      '~/components/users',
+      '~/components/clients'
+
     ]
   },
 
