@@ -16,16 +16,21 @@
                         <div class="d-flex py-1 align-items-center">
                             <span class="avatar me-2">US</span>
                             <div class="flex-fill">
-                            <div class="font-weight-medium">{{ user.nick_name }}</div>
-                            <div class="text-muted"><a href="#" class="text-reset">{{ user.email }}</a></div>
+                                <div class="font-weight-medium">{{ user.nick_name }}</div>
+                                <div class="text-muted"><a href="#" class="text-reset">{{ user.email }}</a></div>
                             </div>
                         </div>
                     </td>
                     <td>
                         <div>@{{ user.username }}</div>
                     </td>
-                    <td class="text-muted" data-label="Role">
-                        User
+                    <td>
+                        <div class="d-flex py-1 align-items-center">
+                            <div class="flex-fill">
+                                <div class="font-weight-medium">{{ user.client.common_name }}</div>
+                                <div class="text-muted"><a href="#" class="text-reset">User</a></div>
+                            </div>
+                        </div>
                     </td>
                     <td>
                         <div class="btn-list flex-nowrap">
