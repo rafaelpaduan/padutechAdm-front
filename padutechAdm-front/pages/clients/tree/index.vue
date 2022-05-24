@@ -1,11 +1,18 @@
 <template>
     <div class="container-xl">
-        <div class="tf-tree" v-if="!error && ready">
-            <ul>
-                <li>
-                    <client-nested :client="clients" />
-                </li>
-            </ul>
+        <div class="row" v-if="!error && ready">
+            <div class="col-6">
+                <table-nested :clients="clientsDesc" />
+            </div>
+            <div class="col-6">
+                <div class="tf-tree">
+                    <ul>
+                        <li>
+                            <client-nested :client="clientsTree" />
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
         <error v-if="error" />
         <ready v-if="!ready" />
@@ -19,7 +26,8 @@ export default {
             error: false,
             ready: false,
             clientId: null,
-            clients: []
+            clientsTree: [],
+            clientsDesc: []
         }
     },
 
@@ -28,10 +36,8 @@ export default {
         this.clientId = this.$route.params.id;
 
         try {
-            const clients = await this.$axios.get('/api/clients/tree/' + this.clientId);
-            this.clients = clients.data
-
-            console.log(this.clients)
+            this.clientsTree = await this.$axios.$get('/api/clients/tree/' + this.clientId);
+            this.clientsDesc = await this.$axios.$get('/api/clients/descendants/' + this.clientId);
 
             setTimeout(() => {
                 this.ready = true
@@ -39,8 +45,6 @@ export default {
         } catch (error) {
             this.error = true
             this.ready = true
-            
-            console.log(error)
         }
     }
 }

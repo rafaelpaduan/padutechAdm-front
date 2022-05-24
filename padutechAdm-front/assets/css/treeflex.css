@@ -27,7 +27,7 @@
 }
 
 .tf-tree li li:before {
-    border-top: .0625em solid red;
+    border-top: .0625em solid black;
     content: "";
     display: block;
     height: .0625em;
@@ -60,10 +60,14 @@
 
 .tf-tree .tf-nc,
 .tf-tree .tf-node-content {
-    /* border: .0625em solid red; */
+    border: .0625em solid black;
     display: inline-block;
     padding: .5em 1em;
     position: relative
+}
+
+.tf-nc:hover {
+    background-color: lightgray;
 }
 
 .tf-tree .tf-nc:before,
@@ -75,7 +79,7 @@
 .tf-tree .tf-nc:before,
 .tf-tree .tf-node-content:after,
 .tf-tree .tf-node-content:before {
-    border-left: .0625em solid red;
+    border-left: .0625em solid black;
     content: "";
     display: block;
     height: 1em;
